@@ -1,0 +1,28 @@
+{% extends "AppProyecto/padre.html" %}
+{% load static %}
+
+
+{% block titulo %}
+<h1 class="mb-5">Blogs</h1>
+{% endblock %}
+
+
+{% block contenido_que_cambia %}
+<div class="container">
+    <div class="row">
+        <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
+            <ul class="list-inline mb-2">
+                <li><a class="btn btn-primary" href="{% url 'crearFormBlog' %}">Crear blog</a></li>
+            </ul>
+        </div>
+        <div class="col-lg-6 h-100 text-center text-lg-end my-auto">
+            <ul class="list-inline mb-0">
+
+                <li><a class="btn btn-primary" href="{% url 'leerBlog' %}">Ver blogs</a></li>
+                
+            </ul>
+        </div>
+    </div>
+</div>
+
+{% endblock %}

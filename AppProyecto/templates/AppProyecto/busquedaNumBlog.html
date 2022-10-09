@@ -1,0 +1,25 @@
+{% extends "AppProyecto/padre.html" %}
+{% load static %}
+
+
+{% block titulo %}
+<h1 class="mb-5">Formulario de búsqueda de Blog </h1>
+{% endblock %}
+
+
+{% block contenido_que_cambia %}
+
+<h1 class="mb-5">Formulario de búsqueda </h1>
+
+<form action="{% url 'buscar' %}" method="GET">
+    
+    <input type="number" name="num_blog" id="num_blog">
+
+    <input type="submit" value="buscar">
+
+</form>
+
+{{ mensaje }}
+
+
+{% endblock %}

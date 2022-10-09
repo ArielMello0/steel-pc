@@ -1,0 +1,27 @@
+{% extends "AppProyecto/padre.html" %}
+{% load static %}
+
+
+{% block titulo %}
+<h1 class="mb-5">Formulario editar perfil: {{ usuario }}</h1>
+{% endblock %}
+
+
+{% block contenido_que_cambia %}
+<h1 class="mb-5">Editando perfil</h1>
+
+<form action="{% url 'editarPerfil' %}" method="POST"> {% csrf_token %}
+
+
+    <table>
+        {{ formulario.as_table }}
+    </table>
+
+
+
+    <input type="submit" value="Guardar">
+
+</form>
+
+<h3>{{ mensaje }}</h3>
+{% endblock %}

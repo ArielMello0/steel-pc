@@ -1,0 +1,32 @@
+{% extends "AppProyecto/padre.html" %}
+{% load static %}
+
+
+{% block titulo %}
+<h1 class="mb-5">Listado de Blogs</h1>
+{% endblock %}
+
+
+{% block contenido_que_cambia %}
+
+<h1>Busqueda</h1>
+{% if blogs %}
+
+<ul>
+    {% for blog in blogs %}
+       <h4>{{blog.nombre}}, {{blog.comision}} </h4>
+       <a class="btn btn-danger" href="{% url 'eliminarBlog' blog.id %}">Eliminar blog</a>
+       <a class="btn btn-success" href="{% url 'editarBlog' blog.id %}">Editar blog</a>
+       <br>
+    {% endfor %}
+</ul>
+
+{% else %}
+<p>No se encontraron blogs</p>
+
+{% endif %}
+
+<a class="btn btn-success" href="{% url 'crearFormBlog' %}">Crear blog</a>
+
+
+{% endblock %}

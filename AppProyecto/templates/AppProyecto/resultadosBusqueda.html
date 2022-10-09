@@ -1,0 +1,28 @@
+{% extends "AppProyecto/padre.html" %}
+{% load static %}
+
+
+{% block titulo %}
+<h1 class="mb-5">Resultados de la busqueda </h1>
+{% endblock %}
+
+
+{% block contenido_que_cambia %}
+
+<h1>Busqueda</h1>
+{% if blogs %}
+
+<ul>
+    {% for blog in blogs %}
+        <li>{{blog.nombre}}</li>
+        <li>{{blog.num_blog}}</li>
+        <br>
+    {% endfor %}
+</ul>
+
+{% else %}
+<p>No se encontraron los blogs</p>
+
+{% endif %}
+
+{% endblock %}

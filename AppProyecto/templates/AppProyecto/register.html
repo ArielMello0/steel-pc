@@ -1,0 +1,27 @@
+{% extends "AppProyecto/padre.html" %}
+{% load static %}
+
+
+{% block titulo %}
+<h1 class="mb-5">Login </h1>
+{% endblock %}
+
+
+{% block contenido_que_cambia %}
+<h1 class="mb-5">Formulario de registro</h1>
+
+<form action="{% url 'register' %}" method="POST"> {% csrf_token %}
+
+
+    <table>
+        {{ formulario.as_table }}
+    </table>
+
+
+
+    <button type="submit">Registrate</button>
+
+</form>
+<h2>{{ mensaje }}</h2>
+
+{% endblock %}

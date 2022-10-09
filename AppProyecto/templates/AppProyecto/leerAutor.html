@@ -1,0 +1,31 @@
+{% extends "AppProyecto/padre.html" %}
+{% load static %}
+
+
+{% block titulo %}
+<h1 class="mb-5">Listado de Autores </h1>
+{% endblock %}
+
+
+{% block contenido_que_cambia %}
+
+<h1>Busqueda</h1>
+{% if autores %}
+
+<ul>
+    {% for autor in autores %}
+       <h4>{{autor.apellido}}, {{autor.nombre}} - {{autor.profesion}}</h4>
+       <a class="btn btn-danger" href="{% url 'eliminarAutor' autor.id %}">Eliminar autor</a>
+       <a class="btn btn-success" href="{% url 'editarAutor' autor.id %}">Editar autor</a>
+       <br>
+    {% endfor %}
+</ul>
+
+{% else %}
+<p>No se encontraron Autores</p>
+
+{% endif %}
+
+<a class="btn btn-success" href="{% url 'crearFormAutor' %}">Agregar autor</a>
+
+{% endblock %}

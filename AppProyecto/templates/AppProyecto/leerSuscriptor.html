@@ -1,0 +1,32 @@
+{% extends "AppProyecto/padre.html" %}
+{% load static %}
+
+
+{% block titulo %}
+<h1 class="mb-5">Listado de Suscriptores </h1>
+{% endblock %}
+
+
+{% block contenido_que_cambia %}
+
+<h1>Busqueda</h1>
+{% if suscriptores %}
+
+<ul>
+    {% for suscriptor in suscriptores %}
+       <h4>{{suscriptor.apellido}}, {{suscriptor.nombre}} - {{suscriptor.email}}</h4>
+       <a class="btn btn-danger" href="{% url 'eliminarSuscriptor' suscriptor.id %}">Eliminar suscriptor</a>
+       <a class="btn btn-success" href="{% url 'editarSuscriptor' suscriptor.id %}">Editar suscriptor</a>
+       <br>
+    {% endfor %}
+</ul>
+
+{% else %}
+<p>No se encontraron Suscriptores</p>
+
+{% endif %}
+
+<a class="btn btn-success" href="{% url 'crearFormSuscriptor' %}">Agregar suscriptor</a>
+
+
+{% endblock %}
