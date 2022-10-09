@@ -33,7 +33,7 @@ urlpatterns = [
     path("crearFormBlog/", crearFormBlog, name="crearFormBlog"),
     path('eliminarBlog/<id>', eliminarBlog, name="eliminarBlog"),
     path('leerBlog/', leerBlog, name="leerBlog"),
-    path('editarBlog/<id>',editarBlog , name="editarBlog"),
+    path('editarBlogs/<id>',editarBlogs , name="editarBlogs"),
     
 
 

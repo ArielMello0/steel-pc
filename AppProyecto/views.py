@@ -45,7 +45,7 @@ def eliminarBlog(request, id):
     return render(request, "AppProyecto/leerBlog.html",{"blogs":blogs})
 
 @login_required
-def editarBlog(request, id):
+def editarBlogs(request, id):
     blog=Blog.objects.get(id=id)
     if request.method=="POST":
         form=BlogForm(request.POST)
@@ -59,7 +59,7 @@ def editarBlog(request, id):
         
     else:
         form=BlogForm(initial={"nombre":blog.nombre, "num_blog":blog.num_blog})
-        return render(request, "AppProyecto/editarBlogs.html",{"formulario":form, "blogs":blogs})
+        return render(request, "AppProyecto/editarBlogs.html",{"formulario":form, "blog":blog})
 
 
 
@@ -95,7 +95,7 @@ def eliminarAutor(request, id):
     autor=Autor.objects.get(id=id)
     autor.delete()
     autores=Autor.objects.all()
-    return render(request, "AppProyecto/leerAutores.html",{"autores":autores})
+    return render(request, "AppProyecto/leerAutor.html",{"autores":autores})
 
 @login_required
 def editarAutor(request, id):
@@ -110,11 +110,11 @@ def editarAutor(request, id):
             autor.profesion=informacion["profesion"]
             autor.save()
             autores=Autor.objects.all()
-            return render(request, "AppProyecto/leerAutores.html",{"autores":autores})
+            return render(request, "AppProyecto/leerAutor.html",{"autores":autores})
         
     else:
         form=AutorForm(initial={"nombre":autor.nombre, "apellido":autor.apellido, "email":autor.email, "profesion":autor.profesion})
-        return render(request, "AppProyecto/editarAutores.html",{"formulario":form, "autor":autor})
+        return render(request, "AppProyecto/editarAutor.html",{"formulario":form, "autor":autor})
         
 
 
@@ -128,7 +128,8 @@ def crearFormSuscriptor(request):
             email=informacion["email"]
             suscriptor=Suscriptor(nombre=nombre, apellido=apellido, email=email)
             suscriptor.save()
-            return render (request, "AppProyecto/inicio.html")
+            return render (request, "AppProyecto/suscriptorFormulario.html")
+           
     
     else:
         formulario=SuscriptorForm()
@@ -148,7 +149,7 @@ def eliminarSuscriptor(request, id):
     suscriptor=Suscriptor.objects.get(id=id)
     suscriptor.delete()
     suscriptores=Suscriptor.objects.all()
-    return render(request, "AppProyecto/leerSuscriptores.html",{"suscriptores":suscriptores})
+    return render(request, "AppProyecto/leerSuscriptor.html",{"suscriptores":suscriptores})
 
 
 @login_required
@@ -163,10 +164,10 @@ def editarSuscriptor(request, id):
             suscriptor.email=informacion["email"]
             suscriptor.save()
             suscriptores=Suscriptor.objects.all()
-            return render(request, "AppProyecto/leerSuscriptores.html",{"suscriptores":suscriptores}) 
+            return render(request, "AppProyecto/leerSuscriptor.html",{"suscriptores":suscriptores}) 
     else:
-        form=SuscriptorForm(initial={"nombre":suscriptor.nombre, "apellido":suscriptor.apellido, "email":suscriptor.email})
-        return render(request, "AppProyecto/editarSuscriptores.html",{"formulario":form, "suscriptores":suscriptores})
+        form=SuscriptorForm(initial={"nombre":suscriptor.nombre,"apellido":suscriptor.apellido,"email":suscriptor.email})
+        return render(request,"AppProyecto/editarSuscriptor.html",{"formulario":form,"suscriptor":suscriptor})
         
 
 
