@@ -269,5 +269,5 @@ def obtenerAvatar(request):
     if len(lista)!=0:
         imagen=lista[0].imagen.url
     else:
-        imagen=""
+        imagen="/media/avatares/imagenPorDefecto.jpg"
     return imagen
