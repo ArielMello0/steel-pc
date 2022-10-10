@@ -61,7 +61,7 @@ def editarBlog(request, id):
         
     else:
         form=BlogForm(initial={"titulo":blog.titulo, "num_blog":blog.num_blog})
-        return render(request, "AppProyecto/editarBlog.html",{"formulario":form, "blogs":blogs})
+        return render(request, "AppProyecto/editarBlog.html",{"formulario":form, "blog":blog})
 
 
 @login_required
@@ -81,7 +81,7 @@ def crearFormAutor (request):
             autor=Autor(nombre=nombre, apellido=apellido, email=email, profesion=profesion)
             autor.save()
             autores=Autor.objects.all()
-            return render(request, "AppProyecto/leerAutores.html", {"autores":autores})
+            return render(request, "AppProyecto/leerAutor.html", {"autores":autores})
     
     else:
         formulario=AutorForm()
@@ -97,7 +97,7 @@ def eliminarAutor(request, id):
     autor=Autor.objects.get(id=id)
     autor.delete()
     autores=Autor.objects.all()
-    return render(request, "AppProyecto/leerAutores.html",{"autores":autores})
+    return render(request, "AppProyecto/leerAutor.html",{"autor":autor})
 
 @login_required
 def editarAutor(request, id):
@@ -112,11 +112,11 @@ def editarAutor(request, id):
             autor.profesion=informacion["profesion"]
             autor.save()
             autores=Autor.objects.all()
-            return render(request, "AppProyecto/leerAutores.html",{"autores":autores})
+            return render(request, "AppProyecto/leerAutor.html",{"autores":autores})
         
     else:
         form=AutorForm(initial={"nombre":autor.nombre, "apellido":autor.apellido, "email":autor.email, "profesion":autor.profesion})
-        return render(request, "AppProyecto/editarAutores.html",{"formulario":form, "autor":autor})
+        return render(request, "AppProyecto/editarAutor.html",{"formulario":form, "autor":autor})
         
 
 @login_required
@@ -152,7 +152,8 @@ def eliminarSuscriptor(request, id):
     suscriptor=Suscriptor.objects.get(id=id)
     suscriptor.delete()
     suscriptores=Suscriptor.objects.all()
-    return render(request, "AppProyecto/leerSuscriptores.html",{"suscriptores":suscriptores})
+    return render(request, "AppProyecto/leerSuscriptor.html",{"suscriptor":suscriptor})
+
 
 
 @login_required
@@ -167,10 +168,10 @@ def editarSuscriptor(request, id):
             suscriptor.email=informacion["email"]
             suscriptor.save()
             suscriptores=Suscriptor.objects.all()
-            return render(request, "AppProyecto/leerSuscriptores.html",{"suscriptores":suscriptores}) 
+            return render(request, "AppProyecto/leerSuscriptor.html",{"suscriptores":suscriptores}) 
     else:
         form=SuscriptorForm(initial={"nombre":suscriptor.nombre, "apellido":suscriptor.apellido, "email":suscriptor.email})
-        return render(request, "AppProyecto/editarSuscriptores.html",{"formulario":form, "suscriptores":suscriptores})
+        return render(request,"AppProyecto/editarSuscriptor.html",{"formulario":form, "suscriptor":suscriptor})
         
 
 
