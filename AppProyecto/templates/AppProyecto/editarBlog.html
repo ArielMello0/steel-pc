@@ -8,9 +8,9 @@
 
 
 {% block contenido_que_cambia %}
-<h1 class="mb-1">Editando blog</h1>
+<h1 class="mb-1">Editando/h1>
 
-<form action="{% url 'editarBlogs' blog.id  %}" method="POST"> {% csrf_token %}
+<form action="{% url 'editarBlog' blogs.id  %}" method="POST"> {% csrf_token %}
 
 
     <table>
@@ -22,4 +22,8 @@
     <input type="submit" value="Enviar">
 
 </form>
+
+<a class="btn btn-success" href="{% url 'blogFormulario' %}">Volver</a>
+
+
 {% endblock %}

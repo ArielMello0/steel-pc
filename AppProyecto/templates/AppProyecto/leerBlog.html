@@ -14,9 +14,9 @@
 
 <ul>
     {% for blog in blogs %}
-       <h4>{{blog.nombre}} - {{blog.comision}} </h4>
+       <h4>{{blog.titulo}} - {{blog.num_blog}} </h4>
        <a class="btn btn-danger" href="{% url 'eliminarBlog' blog.id %}">Eliminar blog</a>
-       <a class="btn btn-success" href="{% url 'editarBlogs' blog.id %}">Editar blog</a>
+       <a class="btn btn-success" href="{% url 'editarBlog' blog.id %}">Editar blog</a>
        <br>
     {% endfor %}
 </ul>
@@ -29,7 +29,6 @@
 <a class="btn btn-success" href="{% url 'crearFormBlog' %}">Crear blog</a>
 
 <a class="btn btn-success" href="{% url 'blogFormulario' %}">Volver</a>
-
 
 
 {% endblock %}

@@ -9,12 +9,13 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-
+@login_required
 def inicio(request):
-    return render (request,"AppProyecto/inicio.html")
+    return render (request,"AppProyecto/inicio.html" ,{"avatar":obtenerAvatar(request)})
 
+@login_required
 def blogFormulario(request):
-    return render(request, "AppProyecto/blogFormulario.html")
+    return render(request, "AppProyecto/blogFormulario.html",{"avatar":obtenerAvatar(request)})
 
 @login_required
 def crearFormBlog(request):
@@ -23,9 +24,9 @@ def crearFormBlog(request):
         if form.is_valid():
             informacion=form.cleaned_data
             print(informacion)
-            nombre=informacion["nombre"]
+            titulo=informacion["titulo"]
             num_blog=informacion["num_blog"]
-            blog=Blog(nombre=nombre, num_blog=num_blog)
+            blog=Blog(titulo=titulo, num_blog=num_blog)
             blog.save()
             return render (request, "AppProyecto/inicio.html")
     
@@ -33,6 +34,7 @@ def crearFormBlog(request):
         formulario=BlogForm()
         return render (request, "AppProyecto/crearFormBlog.html", {"formulario":formulario})
 
+@login_required
 def leerBlog(request):
     blogs=Blog.objects.all()
     return render(request, "AppProyecto/leerBlog.html", {"blogs":blogs})
@@ -45,26 +47,26 @@ def eliminarBlog(request, id):
     return render(request, "AppProyecto/leerBlog.html",{"blogs":blogs})
 
 @login_required
-def editarBlogs(request, id):
+def editarBlog(request, id):
     blog=Blog.objects.get(id=id)
     if request.method=="POST":
         form=BlogForm(request.POST)
         if form.is_valid():
             informacion=form.cleaned_data
-            blog.nombre=informacion["nombre"]
+            blog.titulo=informacion["titulo"]
             blog.num_blog=informacion["num_blog"]
             blog.save()
             blogs=Blog.objects.all()
             return render(request, "AppProyecto/leerBlog.html",{"blogs":blogs})
         
     else:
-        form=BlogForm(initial={"nombre":blog.nombre, "num_blog":blog.num_blog})
-        return render(request, "AppProyecto/editarBlogs.html",{"formulario":form, "blog":blog})
+        form=BlogForm(initial={"titulo":blog.titulo, "num_blog":blog.num_blog})
+        return render(request, "AppProyecto/editarBlog.html",{"formulario":form, "blogs":blogs})
 
 
-
+@login_required
 def autorFormulario(request):
-    return render(request, "AppProyecto/autorFormulario.html")
+    return render(request, "AppProyecto/autorFormulario.html",{"avatar":obtenerAvatar(request)})
 
 @login_required
 def crearFormAutor (request):
@@ -79,13 +81,13 @@ def crearFormAutor (request):
             autor=Autor(nombre=nombre, apellido=apellido, email=email, profesion=profesion)
             autor.save()
             autores=Autor.objects.all()
-            return render(request, "AppProyecto/leerAutor.html", {"autores":autores})
+            return render(request, "AppProyecto/leerAutores.html", {"autores":autores})
     
     else:
         formulario=AutorForm()
         return render (request, "AppProyecto/crearFormAutor.html", {"formulario":formulario})
 
-
+@login_required
 def leerAutor(request):
     autores=Autor.objects.all()
     return render(request, "AppProyecto/leerAutor.html", {"autores":autores})
@@ -95,7 +97,7 @@ def eliminarAutor(request, id):
     autor=Autor.objects.get(id=id)
     autor.delete()
     autores=Autor.objects.all()
-    return render(request, "AppProyecto/leerAutor.html",{"autores":autores})
+    return render(request, "AppProyecto/leerAutores.html",{"autores":autores})
 
 @login_required
 def editarAutor(request, id):
@@ -110,14 +112,18 @@ def editarAutor(request, id):
             autor.profesion=informacion["profesion"]
             autor.save()
             autores=Autor.objects.all()
-            return render(request, "AppProyecto/leerAutor.html",{"autores":autores})
+            return render(request, "AppProyecto/leerAutores.html",{"autores":autores})
         
     else:
         form=AutorForm(initial={"nombre":autor.nombre, "apellido":autor.apellido, "email":autor.email, "profesion":autor.profesion})
-        return render(request, "AppProyecto/editarAutor.html",{"formulario":form, "autor":autor})
+        return render(request, "AppProyecto/editarAutores.html",{"formulario":form, "autor":autor})
         
 
+@login_required
+def suscriptorFormulario(request):
+    return render(request, "AppProyecto/suscriptorFormulario.html",{"avatar":obtenerAvatar(request)})
 
+@login_required
 def crearFormSuscriptor(request):
     if request.method=="POST":
         form=SuscriptorForm(request.POST)
@@ -128,18 +134,15 @@ def crearFormSuscriptor(request):
             email=informacion["email"]
             suscriptor=Suscriptor(nombre=nombre, apellido=apellido, email=email)
             suscriptor.save()
-            return render (request, "AppProyecto/suscriptorFormulario.html")
-           
+            return render (request, "AppProyecto/inicio.html")
     
     else:
         formulario=SuscriptorForm()
         return render (request, "AppProyecto/crearFormSuscriptor.html", {"formulario":formulario})
 
 
-def suscriptorFormulario(request):
-    return render(request, "AppProyecto/suscriptorFormulario.html")
 
-
+@login_required
 def leerSuscriptor(request):
     suscriptores=Suscriptor.objects.all()
     return render(request, "AppProyecto/leerSuscriptor.html", {"suscriptores":suscriptores})
@@ -149,7 +152,7 @@ def eliminarSuscriptor(request, id):
     suscriptor=Suscriptor.objects.get(id=id)
     suscriptor.delete()
     suscriptores=Suscriptor.objects.all()
-    return render(request, "AppProyecto/leerSuscriptor.html",{"suscriptores":suscriptores})
+    return render(request, "AppProyecto/leerSuscriptores.html",{"suscriptores":suscriptores})
 
 
 @login_required
@@ -164,10 +167,10 @@ def editarSuscriptor(request, id):
             suscriptor.email=informacion["email"]
             suscriptor.save()
             suscriptores=Suscriptor.objects.all()
-            return render(request, "AppProyecto/leerSuscriptor.html",{"suscriptores":suscriptores}) 
+            return render(request, "AppProyecto/leerSuscriptores.html",{"suscriptores":suscriptores}) 
     else:
-        form=SuscriptorForm(initial={"nombre":suscriptor.nombre,"apellido":suscriptor.apellido,"email":suscriptor.email})
-        return render(request,"AppProyecto/editarSuscriptor.html",{"formulario":form,"suscriptor":suscriptor})
+        form=SuscriptorForm(initial={"nombre":suscriptor.nombre, "apellido":suscriptor.apellido, "email":suscriptor.email})
+        return render(request, "AppProyecto/editarSuscriptores.html",{"formulario":form, "suscriptores":suscriptores})
         
 
 
@@ -240,3 +243,31 @@ def editarPerfil(request):
     else:
         form= UserEditForm(instance=usuario)
     return render(request, "AppProyecto/editarPerfil.html", {"formulario":form, "usuario":usuario})
+##################################
+@login_required
+def agregarAvatar(request):
+    if request.method=='POST':
+        formulario=AvatarForm(request.POST,request.FILES)
+        if formulario.is_valid():
+            avatarViejo=Avatar.objects.filter(user=request.user)
+            if(len(avatarViejo)>0):
+                avatarViejo[0].delete()
+            avatar=Avatar(user=request.user, imagen=formulario.cleaned_data['imagen'])
+            avatar.save()
+            return render(request, 'AppProyecto/inicio.html', {'usuario':request.user, 'mensaje':'Avatar agregado exitosamente',"imagen": avatar.imagen.url})
+        else:
+            return render(request, 'AppProyecto/agregarAvatar.html', {'formulario':formulario, 'mensaje':'FORMULARIO INVALIDO'})
+
+    else:
+        formulario=AvatarForm()
+        return render(request, "AppProyecto/agregar.html", {"formulario":formulario, "usuario":request.user})
+
+
+@login_required
+def obtenerAvatar(request):
+    lista=Avatar.objects.filter(user=request.user)
+    if len(lista)!=0:
+        imagen=lista[0].imagen.url
+    else:
+        imagen=""
+    return imagen

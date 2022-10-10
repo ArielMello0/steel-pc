@@ -3,7 +3,7 @@
 
 
 {% block titulo %}
-<h1 class="mb-2">Listado de Autores </h1>
+<h1 class="mb-5">Listado de Autores </h1>
 {% endblock %}
 
 
@@ -14,7 +14,7 @@
 
 <ul>
     {% for autor in autores %}
-       <h4>{{autor.apellido}} {{autor.nombre}} - {{autor.profesion}}</h4>
+       <h4>{{autor.apellido}}, {{autor.nombre}} - {{autor.profesion}}</h4>
        <a class="btn btn-danger" href="{% url 'eliminarAutor' autor.id %}">Eliminar autor</a>
        <a class="btn btn-success" href="{% url 'editarAutor' autor.id %}">Editar autor</a>
        <br>
@@ -27,6 +27,7 @@
 {% endif %}
 
 <a class="btn btn-success" href="{% url 'crearFormAutor' %}">Agregar autor</a>
+
 <a class="btn btn-success" href="{% url 'autorFormulario' %}">Volver</a>
 
 {% endblock %}

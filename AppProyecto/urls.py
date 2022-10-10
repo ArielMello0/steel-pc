@@ -11,6 +11,9 @@ urlpatterns = [
     path('logout/', LogoutView.as_view(template_name='AppProyecto/logout.html'), name="logout"),
     path('editarPerfil/', editarPerfil, name="editarPerfil"),
 
+    path('agregarAvatar/', agregarAvatar, name="agregarAvatar"),
+
+
     
     path('busquedaNumBlog/', busquedaNumBlog, name="busquedaNumBlog"),
     path('buscar/', buscar, name="buscar"),
@@ -33,7 +36,7 @@ urlpatterns = [
     path("crearFormBlog/", crearFormBlog, name="crearFormBlog"),
     path('eliminarBlog/<id>', eliminarBlog, name="eliminarBlog"),
     path('leerBlog/', leerBlog, name="leerBlog"),
-    path('editarBlogs/<id>',editarBlogs , name="editarBlogs"),
+    path('editarBlog/<id>', editarBlog, name="editarBlog"),
     
 
 

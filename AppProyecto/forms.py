@@ -4,7 +4,7 @@ from django.contrib.auth.models import User
 
 
 class BlogForm(forms.Form):
-    nombre=forms.CharField(max_length=50)
+    titulo=forms.CharField(max_length=50)
     num_blog=forms.IntegerField()
 
 class AutorForm(forms.Form):
@@ -39,3 +39,9 @@ class UserEditForm(UserCreationForm):
         fields = ['email', 'password1', 'password2']
         help_texts = {k:"" for k in fields}
    
+class AvatarForm(forms.Form):
+    imagen= forms.ImageField(label="Imagen")
+
+
+
+

@@ -1,0 +1,28 @@
+{% extends "AppProyecto/padre.html" %}
+{% load static %}
+
+
+{% block titulo %}
+<h1 class="mb-2"> Agregando avatar de {{ usuario }}</h1>
+{% endblock %}
+
+
+{% block contenido_que_cambia %}
+<h1 class="mb-2">Agregar avatar</h1>
+
+<form action="{% url 'agregarAvatar' %}" method="POST" enctype="multipart/form-data"> {% csrf_token %}
+
+
+    <table>
+        {{ formulario.as_table }}
+    </table>
+
+
+
+    <button type="submit"> Agregar avatar</button> 
+
+</form>
+
+<a class="btn btn-success" href="{% url 'inicio' %}">Volver</a>
+
+{% endblock %}

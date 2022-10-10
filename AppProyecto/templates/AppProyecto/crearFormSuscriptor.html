@@ -3,12 +3,12 @@
 
 
 {% block titulo %}
-<h1 class="mb-2">Crear Suscriptor </h1>
+<h1 class="mb-5">Crear Suscriptor </h1>
 {% endblock %}
 
 
 {% block contenido_que_cambia %}
-<h1 class="mb-2">Crear nuevo Suscriptor</h1>
+<h1 class="mb-5">Crear nuevo Suscriptor</h1>
 
 <form action="{% url 'crearFormSuscriptor' %}" method="POST"> {% csrf_token %}
 

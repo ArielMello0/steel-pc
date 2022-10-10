@@ -3,12 +3,12 @@
 
 
 {% block titulo %}
-<h1 class="mb-2"> Crear Autor </h1>
+<h1 class="mb-5"> Crear Autor </h1>
 {% endblock %}
 
 
 {% block contenido_que_cambia %}
-<h4 class="mb-2">Crear nuevo AUTOR</h1>
+<h4 class="mb-5">Crear nuevo AUTOR</h1>
 
 <form action="{% url 'crearFormAutor' %}" method="POST"> {% csrf_token %}
 

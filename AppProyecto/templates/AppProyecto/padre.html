@@ -25,6 +25,9 @@
                 <a class="btn btn-primary" href="{% url 'autorFormulario' %}">Autores</a>
                 <a class="btn btn-primary" href="{% url 'suscriptorFormulario' %}">Suscripciones</a>
                 {% if user.is_authenticated %}
+                <h5> Hola {{ user.username }}</h5>
+                <img src="{{ avatar }}" alt="">
+
                 <a class="btn btn-primary" href="{% url 'logout' %}">Deslogueate</a> 
                 {% else%}
                 <a class="btn btn-primary" href="{% url 'login' %}">Logueate</a>

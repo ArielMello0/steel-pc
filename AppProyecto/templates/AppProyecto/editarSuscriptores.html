@@ -3,12 +3,12 @@
 
 
 {% block titulo %}
-<h1 class="mb-2">Formulario editar suscriptor: {{ suscriptor }}</h1>
+<h1 class="mb-5">Formulario editar suscriptor: {{ suscriptor }}</h1>
 {% endblock %}
 
 
 {% block contenido_que_cambia %}
-<h1 class="mb-2">Editando</h1>
+<h1 class="mb-5">Editando/h1>
 
 <form action="{% url 'editarSuscriptor' suscriptor.id  %}" method="POST"> {% csrf_token %}
 
