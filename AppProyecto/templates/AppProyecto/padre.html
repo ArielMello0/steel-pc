@@ -24,6 +24,8 @@
                 <a class="btn btn-primary" href="{% url 'blogFormulario' %}">Blogs</a>
                 <a class="btn btn-primary" href="{% url 'autorFormulario' %}">Autores</a>
                 <a class="btn btn-primary" href="{% url 'suscriptorFormulario' %}">Suscripciones</a>
+                <a class="btn btn-primary" href="{% url 'nosotros' %}">Acerca de nosotros</a>
+                
                 {% if user.is_authenticated %}
                 <h5> Hola {{ user.username }}</h5>
                 <img src="{{ avatar }}" alt="">
@@ -32,6 +34,7 @@
                 {% else%}
                 <a class="btn btn-primary" href="{% url 'login' %}">Logueate</a>
                 <a class="btn btn-primary" href="{% url 'register' %}">Registrate</a>
+
                 {% endif%}
             </div>
         </nav>
@@ -68,15 +71,7 @@
             <div class="container">
                 <div class="row">
                     <div class="col-lg-6 h-100 text-center text-lg-start my-auto">
-                        <ul class="list-inline mb-2">
-                            <li class="list-inline-item"><a href="#!">About</a></li>
-                            <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Contact</a></li>
-                            <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Terms of Use</a></li>
-                            <li class="list-inline-item">⋅</li>
-                            <li class="list-inline-item"><a href="#!">Privacy Policy</a></li>
-                        </ul>
+
                         <p class="text-muted small mb-4 mb-lg-0">&copy; Your Website 2022. All Rights Reserved.</p>
                     </div>
                     <div class="col-lg-6 h-100 text-center text-lg-end my-auto">

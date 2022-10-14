@@ -9,9 +9,12 @@ from django.contrib.auth import login, logout, authenticate
 from django.contrib.auth.decorators import login_required
 
 # Create your views here.
-@login_required
+
 def inicio(request):
-    return render (request,"AppProyecto/inicio.html" ,{"avatar":obtenerAvatar(request)})
+    return render (request,"AppProyecto/inicio.html")
+
+def nosotros(request):
+    return render(request, "AppProyecto/nosotros.html")
 
 @login_required
 def blogFormulario(request):
