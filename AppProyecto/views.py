@@ -23,15 +23,26 @@ def blogFormulario(request):
 @login_required
 def crearFormBlog(request):
     if request.method=="POST":
-        form=BlogForm(request.POST)
+        form=BlogForm(request.POST, request.FILES)
         if form.is_valid():
             informacion=form.cleaned_data
-            print(informacion)
             titulo=informacion["titulo"]
-            num_blog=informacion["num_blog"]
-            blog=Blog(titulo=titulo, num_blog=num_blog)
-            blog.save()
-            return render (request, "AppProyecto/inicio.html")
+            subtitulo=informacion["subtitulo"]
+            cuerpo=informacion["cuerpo"]
+            autor=informacion["autor"]
+            fecha=informacion["fecha"]
+            imagen=informacion["imagen"]
+            
+            objeto= blog.objects.create(
+                titulo=titulo,
+                subtitulo=subtitulo,
+                cuerpo=cuerpo,
+                autor=autor,
+                fecha=fecha,
+                imagen=imagen,
+                )
+            objeto.save()
+        return render (request, "AppProyecto/inicio.html")
     
     else:
         formulario=BlogForm()
@@ -58,6 +69,11 @@ def editarBlog(request, id):
             informacion=form.cleaned_data
             blog.titulo=informacion["titulo"]
             blog.num_blog=informacion["num_blog"]
+            subtitulo=informacion["subtitulo"]
+            cuerpo=informacion["cuerpo "]
+            autor=informacion["autor"]
+            fecha=informacion["fecha"]
+            imagen=informacion["imagen"]
             blog.save()
             blogs=Blog.objects.all()
             return render(request, "AppProyecto/leerBlog.html",{"blogs":blogs})

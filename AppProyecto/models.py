@@ -22,10 +22,15 @@ class Autor(models.Model):
 
 class Blog(models.Model):
     titulo=models.CharField(max_length=50)
-    num_blog=models.IntegerField()
+    subtitulo= models.CharField(max_length=80)
+    cuerpo= models.CharField(max_length=5000)
+    autor= models.CharField(max_length=50)
+    fecha= models.DateField ()
+    imagen= models.ImageField(upload_to='media', null=True, blank=True)
+
 
     def __str__(self):
-        return self.titulo+" "+str(self.num_blog)
+        return self.titulo, self.autor , self.fecha , self.imagen
 
 class Avatar(models.Model):
     user=models.ForeignKey(User, on_delete=models.CASCADE)
