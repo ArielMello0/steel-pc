@@ -20,13 +20,14 @@
         <!-- Navigation-->
         <nav class="navbar navbar-light bg-light static-top">
             <div class="container">
+                {% if user.is_authenticated %}
                 <a class="navbar-brand" href="{% url 'inicio' %}">SteelPc</a>
                 <a class="btn btn-primary" href="{% url 'blogFormulario' %}">Blogs</a>
                 <a class="btn btn-primary" href="{% url 'autorFormulario' %}">Autores</a>
                 <a class="btn btn-primary" href="{% url 'suscriptorFormulario' %}">Suscripciones</a>
                 <a class="btn btn-primary" href="{% url 'nosotros' %}">Acerca de nosotros</a>
                 
-                {% if user.is_authenticated %}
+
                 <h5> Hola {{ user.username }}</h5>
                 <img src="{{ avatar }}" alt="">
 

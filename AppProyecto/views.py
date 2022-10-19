@@ -11,7 +11,7 @@ from django.contrib.auth.decorators import login_required
 # Create your views here.
 
 def inicio(request):
-    return render (request,"AppProyecto/inicio.html")
+    return render (request,"AppProyecto/inicio.html" ,{"avatar":obtenerAvatar(request)})
 
 def nosotros(request):
     return render(request, "AppProyecto/nosotros.html")
