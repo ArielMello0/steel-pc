@@ -12,5 +12,5 @@
 <p>Primero que todo al acceder a la web tendremos que registrarnos haciendo click en el boton "Registrate", seguidamente nos pediran un nombre de usuario o "Username", un email y una contraseña, nosotros recomendamos hacer una contraseña que tenga letras y numeros para que su cuenta este mas segura.Una vez finalizado eso ya podras crear, ver o incluso editar tus propios blogs con el boton "blogs" que te llevara a otros 2 botones que se utilizan para crear o ver los blogs ya hechos. Si aun tienes alguna duda sobre como va el funcionamiento de nuestra pagina, dentro del proyecto habrá una carpeta con el nombre video de blog que contendra el video explicando el funcionamiento de la página, si tienen algun problema descarguense el video y despejen sus dudas"</p> 
 
 <h2>Autores del Proyecto: </h2>
-<h3>Ariel Peralta </h3>
+<h3>Ariel Mello </h3>
 <h3>Axel Zequeira </h3>
