@@ -6,10 +6,11 @@ from django.contrib.auth.models import User
 class BlogForm(forms.Form):
     titulo=forms.CharField(max_length=50)
     subtitulo=forms.CharField(max_length=50)
+    num_blog=forms.IntegerField()
     cuerpo=forms.CharField(max_length=5000, widget = forms.Textarea)
-    autor= forms.CharField(max_length=50)
-    fecha= forms.DateField()
-    imagen=forms.ImageField(label='imagen')
+    autor=forms.CharField(max_length=50)
+    fecha=forms.CharField(max_length=12)
+
 
 class AutorForm(forms.Form):
     nombre=forms.CharField(max_length=50)

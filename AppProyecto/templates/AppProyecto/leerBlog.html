@@ -10,11 +10,11 @@
 {% block contenido_que_cambia %}
 
 <h1>Busqueda</h1>
-{% if blog %}
+{% if blogs %}
 
 <ul>
-    {% for blogs in blog %}
-       <h4>{{blog.titulo}} - {{blog.subtitulo}} - {{blog.autor}} - {{blog.fecha}} - {{blog.imagen}}</h4>
+    {% for blog in blogs %}
+       <h4>{{blog.titulo}} - {{blog.subtitulo}} - {{blog.num_blog}} </h4>
        <a class="btn btn-danger" href="{% url 'eliminarBlog' blog.id %}">Eliminar blog</a>
        <a class="btn btn-success" href="{% url 'editarBlog' blog.id %}">Editar blog</a>
        <br>
