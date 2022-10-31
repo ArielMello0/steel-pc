@@ -14,7 +14,7 @@ def inicio(request):
     return render (request,"AppProyecto/inicio.html" ,{"avatar":obtenerAvatar(request)})
 
 def nosotros(request):
-    return render(request, "AppProyecto/nosotros.html")
+    return render(request, "AppProyecto/nosotros.html",{"avatar":obtenerAvatar(request)})
 
 @login_required
 def blogFormulario(request):
@@ -244,7 +244,7 @@ def register(request):
     
     else:
         form=UserRegisterForm()
-        return render(request, "AppProyecto/register.html",{"formulario":form})
+        return render(request, "AppProyecto/register.html",{"formulario":form,})
 
 @login_required
 def editarPerfil(request):
@@ -254,15 +254,14 @@ def editarPerfil(request):
         if form.is_valid():
             info=form.cleaned_data
             usuario.email=info["email"]
-            usuario.password1=info["password1"]
-            usuario.password2=info["password2"]
+            usuario.username=infor["username"]
             usuario.save()
             return render(request, "AppProyecto/inicio.html", {"mensaje":"Perfil editado correctamente"})
         else:
             return render(request, "AppProyecto/editarPerfil.html", {"formulario":form, "usuario":usuario,"mensaje":"Formulario inválido"})
     else:
         form= UserEditForm(instance=usuario)
-    return render(request, "AppProyecto/editarPerfil.html", {"formulario":form, "usuario":usuario})
+    return render(request, "AppProyecto/editarPerfil.html", {"formulario":form, "usuario":usuario, "avatar":obtenerAvatar(request)})
 ##################################
 @login_required
 def agregarAvatar(request):
@@ -280,7 +279,7 @@ def agregarAvatar(request):
 
     else:
         formulario=AvatarForm()
-        return render(request, "AppProyecto/agregar.html", {"formulario":formulario, "usuario":request.user})
+        return render(request, "AppProyecto/agregarAvatar.html", {"formulario":formulario, "usuario":request.user, "avatar":obtenerAvatar(request)})
 
 
 @login_required

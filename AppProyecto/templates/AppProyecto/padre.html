@@ -29,9 +29,10 @@
                 
 
                 <h5> Hola {{ user.username }}</h5>
-                <img src="{{ avatar }}" alt="">
-
+                <img height="70px" src="{{ avatar }}" alt="">
+                <a class="btn btn-primary" href="{% url 'editarPerfil' %}">Edital Perfil</a> 
                 <a class="btn btn-primary" href="{% url 'logout' %}">Deslogueate</a> 
+                <a class="btn btn-primary" href="{% url 'agregarAvatar' %}">Agregar Avatar</a> 
                 {% else%}
                 <a class="btn btn-primary" href="{% url 'login' %}">Logueate</a>
                 <a class="btn btn-primary" href="{% url 'register' %}">Registrate</a>
