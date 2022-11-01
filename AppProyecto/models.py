@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from ckeditor.fields import RichTextField
 
 # Create your models here.
 class Suscriptor(models.Model):
@@ -24,7 +25,7 @@ class Blog(models.Model):
     titulo=models.CharField(max_length=50)
     subtitulo= models.CharField(max_length=50)
     num_blog=models.IntegerField()
-    cuerpo= models.CharField(max_length=5000)
+    cuerpo= RichTextField()
     autor= models.CharField(max_length=50)
     fecha=models.CharField(max_length=12)
    
